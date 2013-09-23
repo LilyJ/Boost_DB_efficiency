@@ -18,14 +18,28 @@ class User < ActiveRecord::Base
             :uniqueness => {:case_sensitive => false}
 
   def self.by_karma
-    joins(:karma_points).group('users.id').order('SUM(karma_points.value) DESC')
+    User.order('karma_level DESC')
   end
 
   def total_karma
-    self.karma_points.sum(:value)
+    self.karma_level
   end
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  # def self.lot(lot_number)
+  #   users_per_lot = 250
+  #   first_user = ((lot_number - 1) * lot_number) + 1
+  #   last_user = (lot_number * lot_number)
+  #   User.by_karma[first_user .. last_user]
+  # end
+
+  def self.page(page_number)
+    users_per_page = 50
+    first_user = ((page_number - 1) * users_per_page) + 1
+    last_user = (page_number * users_per_page)
+    User.by_karma[first_user .. last_user]
   end
 end

@@ -10,3 +10,17 @@
     <%= render 'user_row', :user => user %>
   <% end %>
 </table>
+
+<div class="pagination">
+  <ul>
+    <li><a href="/users/<%= @page.to_i - 1 %>">Prev</a></li>
+    <li><a href="/users/<%= first_page_number %>"><%= first_page_number  %></a></li>
+    <li><a href="/users/<%= first_page_number + 1 %>"><%= first_page_number + 1 %></a></li>
+    <li><a href="/users/<%= first_page_number + 2 %>"><%= first_page_number + 2 %></a></li>
+    <li><a href="/users/<%= first_page_number + 3 %>"><%= first_page_number + 3 %></a></li>
+    <li><a href="/users/<%= first_page_number + 4 %>"><%= first_page_number + 4 %></a></li>
+    <li><a href="/users/<%= @page.to_i + 1 %>">Next</a></li>
+  </ul>
+</div>
+
+
